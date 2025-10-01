@@ -10,7 +10,7 @@ const nano = async () => {
   const { page, browser } = await connect({
     args: ["--start-maximized"],
     turnstile: true,
-    headless: false,
+    headless: true,
     proxy: proxy,
     disableXvfb: true,
     customConfig: {},
@@ -62,3 +62,4 @@ const nano = async () => {
 };
 
 nano();
+
