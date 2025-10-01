@@ -36,8 +36,7 @@ const nano = async () => {
     const sucesso = await page.evaluate(() => {
       const ver = document.body.innerText.includes("Success !");
       if (ver) {
-        return document.querySelector(".ant-descriptions-item-content")
-          .innerText;
+        return document.querySelector(".ant-descriptions-item-content").innerText;
       }
       return null;
     });
@@ -46,20 +45,16 @@ const nano = async () => {
 
     const res = sucesso ? `Saque solicitado: ${sucesso}` : "Falha no saque";
     console.log(res);
+    
   } catch (error) {
     console.error(`Erro interno do servidor: ${error.message}`);
   } finally {
-    if (browser) {
-      await browser.close();
-      await new Promise((r) => setTimeout(r, 5000));
-    }
-    try {
-      await deploy();
-    } catch (error) {
-      console.error("Erro ao executar deploy:", error);
-    }
+    await deploy();
+    await new Promise((r) => setTimeout(r, 5000));
+    await browser.close();
   }
 };
 
 nano();
+
 
