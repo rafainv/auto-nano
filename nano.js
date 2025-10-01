@@ -7,25 +7,20 @@ const url = process.env.URL;
 const proxy = process.env.PROXY || false;
 
 const nano = async () => {
-  let browser;
-  let page;
+  const { page, browser } = await connect({
+    args: ["--start-maximized"],
+    turnstile: true,
+    headless: false,
+    proxy: proxy,
+    disableXvfb: true,
+    customConfig: {},
+    connectOption: {
+      defaultViewport: null,
+    },
+    plugins: [],
+  });
+
   try {
-    const puppeteer = await connect({
-      args: ["--start-maximized"],
-      turnstile: true,
-      headless: false,
-      proxy: proxy,
-      disableXvfb: true,
-      customConfig: {},
-      connectOption: {
-        defaultViewport: null,
-      },
-      plugins: [],
-    });
-
-    page = puppeteer.page;
-    browser = puppeteer.browser;
-
     const arq = fs.readFileSync("address.txt", "utf-8").split("\n");
     const nanoAddress = arq[Math.floor(Math.random() * arq.length)];
 
@@ -56,30 +51,14 @@ const nano = async () => {
   } finally {
     if (browser) {
       await browser.close();
-      await new Promise(r => setTimeout(r, 5000));
+      await new Promise((r) => setTimeout(r, 5000));
     }
-
-    // Executa deploy de forma segura
     try {
       await deploy();
-    } catch (err) {
-      console.error("Erro ao executar deploy:", err);
+    } catch (error) {
+      console.error("Erro ao executar deploy:", error);
     }
   }
 };
 
-// Loop por 20 minutos (opcional)
-const runLoop = async (minutes = 20) => {
-  const duration = minutes * 60 * 1000;
-  const start = Date.now();
-
-  while (Date.now() - start < duration) {
-    await nano();
-    console.log("Aguardando 10 segundos para próxima iteração...");
-    await new Promise(r => setTimeout(r, 10000));
-  }
-
-  console.log(`⏰ Loop de ${minutes} minutos finalizado`);
-};
-
-runLoop().catch(err => console.error("Erro no loop:", err));
+nano();
