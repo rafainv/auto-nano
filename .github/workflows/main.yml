@@ -55,7 +55,7 @@ jobs:
           URL: ${{ secrets.URL }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: node --trace-warnings nano.js
+        run: node nano.js
 
       - name: Atualiza screen.png
         env:
