@@ -1,26 +1,31 @@
 const { connect } = require("puppeteer-real-browser");
 const fs = require("fs");
-const redeploy = require("./deploy");
+const deploy = require("./deploy");
 require("dotenv").config({ quiet: true });
 
 const url = process.env.URL;
 const proxy = process.env.PROXY || false;
 
 const nano = async () => {
-  const { page, browser } = await connect({
-    args: ["--start-maximized"],
-    turnstile: true,
-    headless: false,
-    proxy: proxy,
-    disableXvfb: true,
-    customConfig: {},
-    connectOption: {
-      defaultViewport: null,
-    },
-    plugins: [],
-  });
-
+  let browser;
+  let page;
   try {
+    const puppeteer = await connect({
+      args: ["--start-maximized"],
+      turnstile: true,
+      headless: false,
+      proxy: proxy,
+      disableXvfb: true,
+      customConfig: {},
+      connectOption: {
+        defaultViewport: null,
+      },
+      plugins: [],
+    });
+
+    page = puppeteer.page;
+    browser = puppeteer.browser;
+
     const arq = fs.readFileSync("address.txt", "utf-8").split("\n");
     const nanoAddress = arq[Math.floor(Math.random() * arq.length)];
 
@@ -49,10 +54,32 @@ const nano = async () => {
   } catch (error) {
     console.error(`Erro interno do servidor: ${error.message}`);
   } finally {
-    await browser.close();
-    await new Promise((r) => setTimeout(r, 5000));
-    await redeploy();
+    if (browser) {
+      await browser.close();
+      await new Promise(r => setTimeout(r, 5000));
+    }
+
+    // Executa deploy de forma segura
+    try {
+      await deploy();
+    } catch (err) {
+      console.error("Erro ao executar deploy:", err);
+    }
   }
 };
 
-nano();
+// Loop por 20 minutos (opcional)
+const runLoop = async (minutes = 20) => {
+  const duration = minutes * 60 * 1000;
+  const start = Date.now();
+
+  while (Date.now() - start < duration) {
+    await nano();
+    console.log("Aguardando 10 segundos para próxima iteração...");
+    await new Promise(r => setTimeout(r, 10000));
+  }
+
+  console.log(`⏰ Loop de ${minutes} minutos finalizado`);
+};
+
+runLoop().catch(err => console.error("Erro no loop:", err));
