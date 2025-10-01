@@ -55,7 +55,7 @@ jobs:
           URL: ${{ secrets.URL }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: xvfb-run --auto-servernum -- node --trace-warnings nano.js
+        run: node --trace-warnings nano.js
 
       - name: Atualiza screen.png
         env:
