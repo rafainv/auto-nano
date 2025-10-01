@@ -6,13 +6,12 @@ on:
   pull_request:
     branches: ["main"]
   schedule:
-    - cron: "0 * * * *" # Executa a cada hora
+    - cron: "/5 * * * *" # Executa a cada hora
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    # timeout-minutes: 30
 
     steps:
       - name: Checkout código
@@ -53,9 +52,7 @@ jobs:
       - name: Executar node index.js
         env:
           URL: ${{ secrets.URL }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-        run: node nano.js
+        run: node --trace-warnings nano.js
 
       - name: Atualiza screen.png
         env:
