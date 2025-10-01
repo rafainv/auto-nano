@@ -47,6 +47,7 @@ const nano = async () => {
     console.log(res);
 
     await deploy();
+    await new Promise(r => setTimeout(r, 5000));
     
   } catch (error) {
     console.error(`Erro interno do servidor: ${error.message}`);
@@ -56,6 +57,7 @@ const nano = async () => {
 };
 
 nano();
+
 
 
 
