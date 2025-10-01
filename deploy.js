@@ -1,6 +1,6 @@
 const deploy = async () => {
   try {
-    const githubToken = process.env.TOKEN;
+    const githubToken = process.env.GITHUB_TOKEN;
     const githubRepository = process.env.GITHUB_REPOSITORY;
 
     if (!githubToken || !githubRepository) {
@@ -42,3 +42,4 @@ const deploy = async () => {
 };
 
 module.exports = deploy;
+
