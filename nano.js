@@ -1,6 +1,5 @@
 const { connect } = require("puppeteer-real-browser");
 const fs = require("fs");
-const deploy = require("./deploy");
 require("dotenv").config({ quiet: true });
 
 const url = process.env.URL;
@@ -45,9 +44,6 @@ const nano = async () => {
 
     const res = sucesso ? `Saque solicitado: ${sucesso}` : "Falha no saque";
     console.log(res);
-
-    await deploy();
-    await new Promise(r => setTimeout(r, 5000));
     
   } catch (error) {
     console.error(`Erro interno do servidor: ${error.message}`);
@@ -57,6 +53,7 @@ const nano = async () => {
 };
 
 nano();
+
 
 
 
