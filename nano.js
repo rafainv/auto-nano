@@ -45,16 +45,17 @@ const nano = async () => {
 
     const res = sucesso ? `Saque solicitado: ${sucesso}` : "Falha no saque";
     console.log(res);
+
+    await deploy();
     
   } catch (error) {
     console.error(`Erro interno do servidor: ${error.message}`);
   } finally {
-    await deploy();
-    await new Promise((r) => setTimeout(r, 5000));
     await browser.close();
   }
 };
 
 nano();
+
 
 
