@@ -1,25 +1,26 @@
 const { connect } = require("puppeteer-real-browser");
 const fs = require("fs");
+const redeploy = require("./deploy");
 require("dotenv").config({ quiet: true });
 
 const url = process.env.URL;
 const proxy = process.env.PROXY || false;
 
 const nano = async () => {
-  try {
-    const { page, browser } = await connect({
-      args: ["--start-maximized"],
-      turnstile: true,
-      headless: false,
-      proxy: proxy,
-      disableXvfb: true,
-      customConfig: {},
-      connectOption: {
-        defaultViewport: null,
-      },
-      plugins: [],
-    });
+  const { page, browser } = await connect({
+    args: ["--start-maximized"],
+    turnstile: true,
+    headless: false,
+    proxy: proxy,
+    disableXvfb: true,
+    customConfig: {},
+    connectOption: {
+      defaultViewport: null,
+    },
+    plugins: [],
+  });
 
+  try {
     const arq = fs.readFileSync("address.txt", "utf-8").split("\n");
     const nanoAddress = arq[Math.floor(Math.random() * arq.length)];
 
@@ -45,7 +46,6 @@ const nano = async () => {
 
     const res = sucesso ? `Saque solicitado: ${sucesso}` : "Falha no saque";
     console.log(res);
-    
   } catch (error) {
     console.error(`Erro interno do servidor: ${error.message}`);
   } finally {
