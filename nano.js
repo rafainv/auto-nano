@@ -3,14 +3,14 @@ const fs = require("fs");
 require("dotenv").config({ quiet: true });
 
 const url = process.env.URL;
-const proxy = process.env.PROXY || false;
+const proxy = [process.env.PROXY, false];
 
 const nano = async () => {
   const { page, browser } = await connect({
     args: ["--start-maximized"],
     turnstile: true,
     headless: true,
-    proxy: proxy,
+    proxy: proxy[Math.floor(Math.random() * proxy.length)],
     disableXvfb: true,
     customConfig: {},
     connectOption: {
@@ -35,7 +35,8 @@ const nano = async () => {
     const sucesso = await page.evaluate(() => {
       const ver = document.body.innerText.includes("Success !");
       if (ver) {
-        return document.querySelector(".ant-descriptions-item-content").innerText;
+        return document.querySelector(".ant-descriptions-item-content")
+          .innerText;
       }
       return null;
     });
@@ -44,7 +45,6 @@ const nano = async () => {
 
     const res = sucesso ? `Saque solicitado: ${sucesso}` : "Falha no saque";
     console.log(res);
-    
   } catch (error) {
     console.error(`Erro interno do servidor: ${error.message}`);
   } finally {
@@ -53,8 +53,3 @@ const nano = async () => {
 };
 
 nano();
-
-
-
-
-
