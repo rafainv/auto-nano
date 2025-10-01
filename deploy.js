@@ -3,6 +3,9 @@ const deploy = async () => {
     const githubToken = process.env.GITHUB_TOKEN;
     const githubRepository = process.env.GITHUB_REPOSITORY;
 
+    console.log("🔑 GitHub Token:", githubToken ? "OK" : "Não definido");
+console.log("📦 Repositório:", githubRepository);
+
     if (!githubToken || !githubRepository) {
       throw new Error("Token do GitHub ou repositório não estão definidos.");
     }
@@ -42,4 +45,5 @@ const deploy = async () => {
 };
 
 module.exports = deploy;
+
 
