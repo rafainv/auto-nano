@@ -52,6 +52,7 @@ jobs:
       - name: Executar node index.js
         env:
           URL: ${{ secrets.URL }}
+          PROXY: ${{ secrets.PROXY }}
         run: node --trace-warnings nano.js
 
       - name: Atualiza screen.png
