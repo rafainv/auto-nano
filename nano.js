@@ -3,15 +3,15 @@ const fs = require("fs");
 require("dotenv").config({ quiet: true });
 
 const url = process.env.URL;
-const proxy = [process.env.PROXY, false];
+const proxy = [JSON.parse(process.env.PROXY), false];
 
 const nano = async () => {
   const { page, browser } = await connect({
     args: ["--start-maximized"],
+    headless: false,
     turnstile: true,
-    headless: true,
-    proxy: proxy[Math.floor(Math.random() * proxy.length)],
     disableXvfb: true,
+    proxy: proxy[Math.floor(Math.random() * proxy.length)],
     customConfig: {},
     connectOption: {
       defaultViewport: null,
@@ -53,3 +53,4 @@ const nano = async () => {
 };
 
 nano();
+
