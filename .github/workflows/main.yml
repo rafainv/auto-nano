@@ -53,7 +53,7 @@ jobs:
         env:
           URL: ${{ secrets.URL }}
           PROXY: ${{ secrets.PROXY }}
-        run: node --trace-warnings nano.js
+        run: xvfb-run --auto-servernum -- node --trace-warnings nano.js
 
       - name: Atualiza screen.png
         env:
