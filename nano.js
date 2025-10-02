@@ -8,7 +8,7 @@ const proxy = [JSON.parse(process.env.PROXY), false];
 const nano = async () => {
   const { page, browser } = await connect({
     args: ["--start-maximized"],
-    headless: false,
+    headless: true,
     turnstile: true,
     disableXvfb: true,
     proxy: proxy[Math.floor(Math.random() * proxy.length)],
@@ -53,6 +53,7 @@ const nano = async () => {
 };
 
 nano();
+
 
 
 
