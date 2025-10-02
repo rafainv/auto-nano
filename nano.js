@@ -5,8 +5,6 @@ require("dotenv").config({ quiet: true });
 const url = process.env.URL;
 const proxy = [JSON.parse(process.env.PROXY), false];
 
-console.log(JSON.parse(process.env.PROXY))
-
 const nano = async () => {
   const { page, browser } = await connect({
     args: ["--start-maximized"],
@@ -55,5 +53,6 @@ const nano = async () => {
 };
 
 nano();
+
 
 
