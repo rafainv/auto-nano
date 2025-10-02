@@ -23,8 +23,6 @@ const nano = async () => {
     const arq = fs.readFileSync("address.txt", "utf-8").split("\n");
     const nanoAddress = arq[Math.floor(Math.random() * arq.length)];
 
-    console.log(nanoAddress);
-
     await page.goto(`${url}/?r=29554221350`, { waitUntil: "networkidle2" });
     await new Promise((r) => setTimeout(r, 5000));
     await page.goto(`${url}/nano-faucet`, { waitUntil: "networkidle2" });
@@ -55,6 +53,7 @@ const nano = async () => {
 };
 
 nano();
+
 
 
 
