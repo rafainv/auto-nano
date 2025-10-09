@@ -55,7 +55,7 @@ jobs:
           PROXY: ${{ secrets.PROXY }}
           WEB_PROXY: ${{ secrets.WEB_PROXY }}
         run: |
-          for i in {1..5}; do
+          for i in {1..20}; do
             xvfb-run --auto-servernum -- node --trace-warnings nano.js || echo "Erro na execução $i, mas continuando..."
             sleep 2
           done
