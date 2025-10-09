@@ -44,7 +44,7 @@ jobs:
       - name: Instalar dependências do Node.js
         run: npm update && npm install
 
-      - name: Adicionar NANO_ADDRESS em address.txt
+      - name: Adicionar ADDRESS em address.txt
         env:
           NANO_ADDRESS: ${{ secrets.NANO_ADDRESS }}
         run: echo "$NANO_ADDRESS" > address.txt
@@ -54,7 +54,12 @@ jobs:
           URL: ${{ secrets.URL }}
           PROXY: ${{ secrets.PROXY }}
           WEB_PROXY: ${{ secrets.WEB_PROXY }}
-        run: xvfb-run --auto-servernum -- node --trace-warnings nano.js
+        run: |
+          for i in {1..5}; do
+            xvfb-run --auto-servernum -- node --trace-warnings nano.js || echo "Erro na execução $i, mas continuando..."
+            sleep 2
+          done
+        # run: xvfb-run --auto-servernum -- node --trace-warnings nano.js
 
       - name: Atualiza screen.png
         env:
