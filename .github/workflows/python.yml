@@ -1,50 +1,50 @@
-name: Python
+# name: Python
 
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-  # schedule:
-  #   - cron: "0 * * * *" # Executa a cada hora
-  workflow_dispatch:
+# on:
+#   push:
+#     branches: ["main"]
+#   pull_request:
+#     branches: ["main"]
+#   # schedule:
+#   #   - cron: "0 * * * *" # Executa a cada hora
+#   workflow_dispatch:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout código
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout código
+#         uses: actions/checkout@v4
 
-      - name: Configurar Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.12"
+#       - name: Configurar Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: "3.12"
 
-      - name: Instalar dependências do Python
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+#       - name: Instalar dependências do Python
+#         run: |
+#           python -m pip install --upgrade pip
+#           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       
-      - name: Adicionar Key
-        env:
-          KEY: ${{ secrets.KEY }}
-          CONFIG: ${{ secrets.CONFIG }}
-        run: |
-          echo "$KEY" > key.pem
-          echo "$CONFIG" > config
+#       - name: Adicionar Key
+#         env:
+#           KEY: ${{ secrets.KEY }}
+#           CONFIG: ${{ secrets.CONFIG }}
+#         run: |
+#           echo "$KEY" > key.pem
+#           echo "$CONFIG" > config
 
-      - name: Executar script Python
-        env:
-          # HOST: ${{ secrets.HOST }}
-          VNIC_ID: ${{ secrets.VNIC_ID }}
-          COMPARTMENT_ID: ${{ secrets.COMPARTMENT_ID }}
-        run: python proxy.py
+#       - name: Executar script Python
+#         env:
+#           # HOST: ${{ secrets.HOST }}
+#           VNIC_ID: ${{ secrets.VNIC_ID }}
+#           COMPARTMENT_ID: ${{ secrets.COMPARTMENT_ID }}
+#         run: python proxy.py
         
-      - name: Fazer upload da captura de tela
-        if: success() || failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: screenshot
-          path: screen.png
+#       - name: Fazer upload da captura de tela
+#         if: success() || failure()
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: screenshot
+#           path: screen.png
