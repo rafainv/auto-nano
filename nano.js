@@ -4,7 +4,7 @@ require("dotenv").config({ quiet: true });
 
 const url = process.env.URL;
 
-console.log(process.env.HOST_PROXY);
+// console.log(process.env.HOST_PROXY);
 
 const nano = async () => {
   const { page, browser } = await connect({
@@ -54,4 +54,5 @@ const nano = async () => {
 };
 
 nano();
+
 
