@@ -48,10 +48,10 @@ def trocar_ip_e_atualizar_env():
         ).data.ip_address
 
         if novo_ip and novo_ip != ip_atual:
-            atualizar_env("HOST", novo_ip)
-            #print(f"✅ IP alterado com sucesso: {ip_atual} ➜ {novo_ip}")
-            #print(novo_ip)
-            print(f"✅ IP alterado com sucesso.")
+            atualizar_env("HOST_PROXY", novo_ip)
+            print(f"✅ IP alterado com sucesso: {ip_atual} ➜ {novo_ip}")
+            print(novo_ip)
+            #print(f"✅ IP alterado com sucesso.")
             return novo_ip
         else:
             print("⚠️ IP não mudou.")
@@ -89,4 +89,5 @@ if __name__ == "__main__":
     novo = trocar_ip_e_atualizar_env()
     if not novo:
         print("❌ Falha na troca.")
+
 
