@@ -36,7 +36,7 @@ const nano = async () => {
     await new Promise((r) => setTimeout(r, 5000));
     await page.waitForSelector("#button_send");
     await page.click("#button_send");
-    await new Promise((r) => setTimeout(r, 5000));
+    await new Promise((r) => setTimeout(r, 8000));
 
     const sucesso = await page.evaluate(() => {
       return document.querySelector("#span_text").textContent;
@@ -54,3 +54,4 @@ const nano = async () => {
 };
 
 nano();
+
