@@ -3,11 +3,11 @@ name: Python
 on:
   push:
     branches: ["main"]
-  # pull_request:
-  #   branches: ["main"]
+  pull_request:
+    branches: ["main"]
   # schedule:
   #   - cron: "0 * * * *" # Executa a cada hora
-  # workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -30,8 +30,10 @@ jobs:
       - name: Adicionar Key
         env:
           KEY: ${{ secrets.KEY }}
+          CONFIG: ${{ secrets.CONFIG }}
         run: |
           echo "$KEY" > key.pem
+          echo "$CONFIG" > config
 
       - name: Executar script Python
         env:
