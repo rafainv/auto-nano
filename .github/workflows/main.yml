@@ -72,18 +72,18 @@ jobs:
       - name: Adicionar ADDRESS em address.txt
         env:
           NANO_ADDRESS: ${{ secrets.NANO_ADDRESS }}
-        run: echo "$NANO_ADDRESS" > address.txt
+          NANO_ADDRESS_2: ${{ secrets.NANO_ADDRESS_2 }}
+        run: |
+          echo "$NANO_ADDRESS" > address.txt
+          echo "$NANO_ADDRESS" > address_2.txt
 
       - name: Executar node index.js
         env:
           URL: ${{ secrets.URL }}
-          PROXY: ${{ secrets.PROXY }}
-          WEB_PROXY: ${{ secrets.WEB_PROXY }}
-        # run: |
-        #   for i in {1..20}; do
-        #     xvfb-run --auto-servernum -- node --trace-warnings nano.js || echo "Erro na execução $i, mas continuando..."
-        #     sleep 2
-        #   done
+          # HOST_PROXY: ${{ secrets.HOST_PROXY }}
+          USER_PROXY: ${{ secrets.USER_PROXY }}
+          SENHA_PROXY: ${{ secrets.SENHA_PROXY }}
+          PORT_PROXY: ${{ secrets.PORT_PROXY }}
         run: xvfb-run --auto-servernum -- node --trace-warnings nano.js
 
       - name: Atualiza screen.png
