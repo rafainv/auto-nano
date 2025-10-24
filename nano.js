@@ -26,7 +26,9 @@ const nano = async () => {
   });
 
   try {
-    const arq = fs.readFileSync("address.txt", "utf-8").split("\n");
+    const arquivos = ["address.txt", "address_2.txt"]
+    const add = arquivos[Math.floor(Math.random() * arquivos.length)];
+    const arq = fs.readFileSync(add, "utf-8").split("\n");
     const nanoAddress = arq[Math.floor(Math.random() * arq.length)];
 
     await page.goto(url, { waitUntil: "networkidle2" });
@@ -54,5 +56,6 @@ const nano = async () => {
 };
 
 nano();
+
 
 
