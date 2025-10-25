@@ -75,7 +75,7 @@ jobs:
           NANO_ADDRESS_2: ${{ secrets.NANO_ADDRESS_2 }}
         run: |
           echo "$NANO_ADDRESS" > address.txt
-          echo "$NANO_ADDRESS" > address_2.txt
+          echo "$NANO_ADDRESS_2" > address_2.txt
 
       - name: Executar node index.js
         env:
