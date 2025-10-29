@@ -29,11 +29,11 @@ const nano = async () => {
     const arq = fs.readFileSync(add, "utf-8").split("\n");
     const nanoAddress = arq[Math.floor(Math.random() * arq.length)];
 
-    await page.goto("https://nanswap.com/?r=29554221350", {
+    await page.goto(`${url}/?r=29554221350`, {
       waitUntil: "networkidle2",
     });
     await new Promise((r) => setTimeout(r, 5000));
-    await page.goto("https://nanswap.com/nano-faucet", {
+    await page.goto(`${url}/nano-faucet`, {
       waitUntil: "networkidle2",
     });
     await page.waitForSelector("#address");
