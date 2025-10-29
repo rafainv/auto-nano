@@ -82,11 +82,15 @@ jobs:
       - name: Executar node index.js
         env:
           URL: ${{ secrets.URL }}
+          URL_2: ${{ secrets.URL_2 }}
           # HOST_PROXY: ${{ secrets.HOST_PROXY }}
           USER_PROXY: ${{ secrets.USER_PROXY }}
           SENHA_PROXY: ${{ secrets.SENHA_PROXY }}
           PORT_PROXY: ${{ secrets.PORT_PROXY }}
-        run: xvfb-run --auto-servernum -- node --trace-warnings nano.js
+        run: |
+          xvfb-run --auto-servernum -- node --trace-warnings nano.js
+          sleep 2
+          xvfb-run --auto-servernum -- node --trace-warnings nano2.js
 
       - name: Atualiza screen.png
         env:
