@@ -49,7 +49,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install playwright playwright_captcha
+          pip install playwright playwright_captcha seleniumbase
 
       - name: Install Playwright browsers (with deps)
         run: |
