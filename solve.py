@@ -21,7 +21,7 @@ async def solve_captcha():
                 captcha_type=CaptchaType.CLOUDFLARE_TURNSTILE
             )
         
-        await asyncio.sleep(5)
+        await asyncio.sleep(10)
         await page.screenshot(path='screen.png')
 
 asyncio.run(solve_captcha())
