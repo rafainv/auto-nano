@@ -53,10 +53,10 @@ jobs:
 
       - name: Install Playwright browsers (with deps)
         run: |
-          python -m playwright install --with-deps
+          python -m playwright install chromium --with-deps
 
       - name: Executar script Python
-        run: python solve.py
+        run: xvfb-run --auto-servernum -- python solve.py
 
       - name: Fazer upload da captura de tela
         if: success() || failure()
