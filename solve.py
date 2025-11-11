@@ -5,7 +5,7 @@ from playwright_captcha import CaptchaType, ClickSolver, FrameworkType
 
 async def solve_captcha():
     async with async_playwright() as playwright:
-        browser = await playwright.chromium.launch(headless=False)
+        browser = await playwright.chromium.launch(headless=True)
         page = await browser.new_page()
         
         framework = FrameworkType.PLAYWRIGHT
@@ -21,7 +21,7 @@ async def solve_captcha():
                 captcha_type=CaptchaType.CLOUDFLARE_TURNSTILE
             )
         
-        await asyncio.sleep(10)
+        await asyncio.sleep(5)
         await page.screenshot(path='screen.png')
 
 asyncio.run(solve_captcha())
