@@ -33,7 +33,7 @@ const nano = async () => {
     await new Promise((r) => setTimeout(r, 5000));
     await page.waitForSelector("#nanoAddr");
     await page.type("#nanoAddr", nanoAddress, { delay: 20 });
-    await new Promise((r) => setTimeout(r, 5000));
+    await new Promise((r) => setTimeout(r, 10000));
     await page.waitForSelector("#getNano");
     await page.click("#getNano");
     await new Promise((r) => setTimeout(r, 10000));
