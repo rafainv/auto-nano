@@ -92,6 +92,8 @@ jobs:
           xvfb-run --auto-servernum -- node --trace-warnings nano.js
           sleep 2
           xvfb-run --auto-servernum -- node --trace-warnings nano2.js
+          sleep 2
+          xvfb-run --auto-servernum -- node --trace-warnings nano3.js
 
       - name: Atualiza screen.png
         env:
