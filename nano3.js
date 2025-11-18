@@ -9,7 +9,7 @@ const nano = async () => {
     args: ["--start-maximized"],
     headless: false,
     turnstile: true,
-    disableXvfb: true,
+   // disableXvfb: true,
     proxy: {
       host: process.env.HOST_PROXY,
       port: process.env.PORT_PROXY,
