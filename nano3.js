@@ -9,7 +9,7 @@ const nano = async () => {
     args: ["--start-maximized"],
     headless: false,
     turnstile: true,
-    // disableXvfb: true,
+    disableXvfb: true,
     proxy: {
       host: process.env.HOST_PROXY,
       port: process.env.PORT_PROXY,
@@ -24,7 +24,7 @@ const nano = async () => {
   });
 
   try {
-    const arquivos = ["address.txt", "address.txt", "address.txt"];
+    const arquivos = ["address.txt", "address_2.txt", "address_3.txt"];
     const add = arquivos[Math.floor(Math.random() * arquivos.length)];
     const arq = fs.readFileSync(add, "utf-8").split("\n");
     const nanoAddress = arq[Math.floor(Math.random() * arq.length)];
@@ -32,7 +32,7 @@ const nano = async () => {
     await page.goto(url, {waitUntil: "networkidle2",});
     await new Promise((r) => setTimeout(r, 5000));
     await page.waitForSelector("#nanoAddr");
-    await page.type("#nanoAddr", nanoAddress, { delay: 20 });
+    await page.type("#nanoAddr", nanoAddress, { delay: 50 });
     await new Promise((r) => setTimeout(r, 10000));
     await page.waitForSelector("#getNano");
     await page.click("#getNano");
