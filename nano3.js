@@ -36,7 +36,7 @@ const nano = async () => {
     await new Promise((r) => setTimeout(r, 10000));
     await page.waitForSelector("#getNano");
     await page.click("#getNano");
-    await new Promise((r) => setTimeout(r, 10000));
+    await new Promise((r) => setTimeout(r, 30000));
 
     const sucesso = await page.evaluate(() => {
       return document.querySelector(".faucetText").innerText;
