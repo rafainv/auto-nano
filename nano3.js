@@ -8,7 +8,7 @@ const nano = async () => {
   const { page, browser } = await connect({
     args: ["--start-maximized"],
     headless: false,
-    turnstile: true,
+    turnstile: false,
    // disableXvfb: true,
     proxy: {
       host: process.env.HOST_PROXY,
