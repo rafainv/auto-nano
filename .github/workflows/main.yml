@@ -59,13 +59,6 @@ jobs:
           echo "$KEY" > key.pem
           echo "$CONFIG" > config
 
-      - name: Executar script Python
-        env:
-          # HOST: ${{ secrets.HOST }}
-          VNIC_ID: ${{ secrets.VNIC_ID }}
-          COMPARTMENT_ID: ${{ secrets.COMPARTMENT_ID }}
-        run: python proxy.py
-
       - name: Instalar dependências do Node.js
         run: npm update && npm install
 
@@ -88,12 +81,11 @@ jobs:
           USER_PROXY: ${{ secrets.USER_PROXY }}
           SENHA_PROXY: ${{ secrets.SENHA_PROXY }}
           PORT_PROXY: ${{ secrets.PORT_PROXY }}
+          # HOST: ${{ secrets.HOST }}
+          VNIC_ID: ${{ secrets.VNIC_ID }}
+          COMPARTMENT_ID: ${{ secrets.COMPARTMENT_ID }}
         run: |
-          xvfb-run --auto-servernum -- node --trace-warnings nano.js
-          sleep 2
-          xvfb-run --auto-servernum -- node --trace-warnings nano2.js
-          sleep 2
-          xvfb-run --auto-servernum -- node --trace-warnings nano3.js
+          xvfb-run --auto-servernum -- node --trace-warnings index.js
 
       - name: Atualiza screen.png
         env:
