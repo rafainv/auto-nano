@@ -26,7 +26,7 @@ const nano = async () => {
   });
 
   try {
-    const arquivos = ["address.txt", "address_2.txt", "address_3.txt"]
+    const arquivos = ["address.txt", "address_2.txt", "address_3.txt", "address_4.txt"];
     const add = arquivos[Math.floor(Math.random() * arquivos.length)];
     const arq = fs.readFileSync(add, "utf-8").split("\n");
     const nanoAddress = arq[Math.floor(Math.random() * arq.length)];
@@ -57,4 +57,5 @@ const nano = async () => {
 
 // nano();
 module.exports = nano;
+
 
