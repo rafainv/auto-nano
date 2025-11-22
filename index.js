@@ -12,7 +12,7 @@ const { spawn } = require("child_process");
     const proxyProcess = spawn("python", ["proxy.py"], { stdio: "inherit" });
     
     // Aguarda um tempo para o proxy iniciar
-    await new Promise(r => setTimeout(r, 3000));
+    await new Promise(r => setTimeout(r, 10000));
     
     await nano();
     await nano2();
