@@ -5,7 +5,7 @@ const { spawn } = require("child_process");
 
 (async () => {
   const startTime = Date.now();
-  const fiveMinutes = 8 * 60 * 1000; // 5 minutos em milissegundos
+  const fiveMinutes = 10 * 60 * 1000; // 10 minutos em milissegundos
   
   while (Date.now() - startTime < fiveMinutes) {
     // Inicia o proxy em processo separado
@@ -24,5 +24,5 @@ const { spawn } = require("child_process");
     console.log(`Tempo restante: ${Math.ceil((fiveMinutes - (Date.now() - startTime)) / 1000)}s`);
   }
   
-  console.log("8 minutos completados!");
+  console.log("10 minutos completados!");
 })();
