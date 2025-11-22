@@ -1,6 +1,6 @@
 const nano = require("./nano");
 const nano2 = require("./nano2");
-const nano3 = require("./nano3");
+// const nano3 = require("./nano3");
 const { spawn } = require("child_process");
 
 (async () => {
@@ -16,7 +16,7 @@ const { spawn } = require("child_process");
     
     await nano();
     await nano2();
-    await nano3();
+    // await nano3();
     
     // Encerra o proxy após cada ciclo
     proxyProcess.kill();
