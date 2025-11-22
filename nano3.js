@@ -52,4 +52,5 @@ const nano = async () => {
   }
 };
 
-nano();
+// nano();
+module.exports = nano;
