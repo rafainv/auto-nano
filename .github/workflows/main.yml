@@ -81,11 +81,11 @@ jobs:
           URL: ${{ secrets.URL }}
           URL_2: ${{ secrets.URL_2 }}
           URL_3: ${{ secrets.URL_3 }}
-          # HOST_PROXY: ${{ secrets.HOST_PROXY }}
+          HOST_PROXY: ${{ secrets.HOST_PROXY }}
           USER_PROXY: ${{ secrets.USER_PROXY }}
           SENHA_PROXY: ${{ secrets.SENHA_PROXY }}
           PORT_PROXY: ${{ secrets.PORT_PROXY }}
-          # HOST: ${{ secrets.HOST }}
+          HOST: ${{ secrets.HOST }}
           VNIC_ID: ${{ secrets.VNIC_ID }}
           COMPARTMENT_ID: ${{ secrets.COMPARTMENT_ID }}
         run: |
